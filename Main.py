@@ -4,76 +4,51 @@ from selenium.webdriver.common.by import By
 
 from src.HtmlTextReader import HtmlTextReader
 from src.PdfGenerator import PdfGenerator
+from src.SubPageParser import SubPageParser
+from src.WebPageTraverser import WebPageTraverser
 from src.subpagecontroller import SubPageController
 
 
 def main():
 
-    need_updated_pages: bool = False
+    need_updated_pages: bool = True
 
     if need_updated_pages:
-        #Button name config
+
         next_page_str: str = "next"
         solution_str: str ="pruefbut"
 
-        #Page-Login
         driver = webdriver.Chrome()
-        driver.get("http://training.kirchbergnet.de/t/index.php")
+        page_traverser = WebPageTraverser(driver = driver)
 
-        assert "Kirchbergnet" in driver.title
+        page_traverser.login_page(
+            url="http://training.kirchbergnet.de/t/index.php",
+            username="12345678",
+            password="12345678",
+            uname_element="lid",
+            pw_element="lkw")
 
-        login_name = driver.find_element(By.NAME, "lid")
-        kennwort = driver.find_element(By.NAME, "lkw")
-
-        login_name.clear()
-        login_name.send_keys("12345678")
-
-        kennwort.clear()
-        kennwort.send_keys("12345678")
-        kennwort.send_keys(Keys.RETURN)
-
-        assert "No results found." not in driver.page_source
-
-        #navigate to db_exercises
-        driver.get("http://training.kirchbergnet.de/t/training.php")
-        db_systeme_fragen = driver.find_element(By.NAME, "befrage_2db")
-        db_systeme_fragen.click()
+        page_traverser.click_button_on_page(
+            url="http://training.kirchbergnet.de/t/training.php",
+            button_name="befrage_2db")
 
         #access sub_pages
         page_controller = SubPageController()
         sub_pages = page_controller.get_sub_pages()
 
-        html_pages = [str]
+        sub_page_parser = SubPageParser()
+        sub_page_parser.extract_html_from_subpages(driver= driver, sub_pages= sub_pages, next_page_str= next_page_str, solution_str= solution_str)
 
-        for sub_page in sub_pages:
-            chapter_button = driver.find_element(By.NAME, sub_page.get_button_label())
-            chapter_button.click()
-            print(f"~~~~~~~~~~ {sub_page.get_button_label()} ~~~~~~~~~~")
-            for i in range(sub_page.get_last_page()):
-                print(f"currently at subpage: {i}/{sub_page.get_last_page()}")
+        driver.quit()
 
-                next_page_button = driver.find_element(By.NAME, next_page_str)
-                solution_button = driver.find_element(By.ID, solution_str)
-                solution_button.click()
-                html_pages.append(driver.page_source)
-                next_page_button.click()
+    generate_pdf: bool = False
 
-            driver.get("http://training.kirchbergnet.de/t/training.php")
-            db_systeme_fragen = driver.find_element(By.NAME, "befrage_2db")
-            db_systeme_fragen.click()
+    if generate_pdf:
+        txt_reader = HtmlTextReader()
+        html_pages: list[str] = txt_reader.get_html_list_from_txt("Exports/html.txt")
 
-        with open("Exports/html.txt", "w") as datei:
-            pass
-
-        with open("Exports/html.txt", "a", encoding="utf-8") as datei:
-            for html_str in html_pages:
-                datei.write(f"\n{html_str}\n")
-
-    txt_reader = HtmlTextReader()
-    html_pages: list[str] = txt_reader.get_html_list_from_txt("Exports/html.txt")
-
-    pdf_gen = PdfGenerator()
-    pdf_gen.generate_pdf_from_html_list_selenium(html_pages)
+        pdf_gen = PdfGenerator()
+        pdf_gen.generate_pdf_from_html_list_selenium(html_pages)
 
 if __name__ == '__main__':
     main()

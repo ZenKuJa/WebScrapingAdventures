@@ -1,9 +1,7 @@
 import io
 import os
-import time
 
 import img2pdf
-import psutil
 from PIL import Image
 
 from PyPDF2 import PdfMerger, PdfWriter, PdfReader
