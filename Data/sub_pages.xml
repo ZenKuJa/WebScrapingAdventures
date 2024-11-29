@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="sub_pages.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<root>
+    <sub_page>
+        <titel>DB-Grundbegriffe</titel>
+        <button>beliebig_gb</button>
+        <pages>20</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>ER-Modellierung</titel>
+        <button>beliebig_er</button>
+        <pages>20</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>Das relationelle Datenmodell</titel>
+        <button>beliebig_rm</button>
+        <pages>17</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>Überführung ER-Modelle</titel>
+        <button>beliebig_erm</button>
+        <pages>22</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>Normalformen</titel>
+        <button>beliebig_nf</button>
+        <pages>24</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>SQL</titel>
+        <button>beliebig_sql</button>
+        <pages>62</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>PL/SQL</titel>
+        <button>beliebig_pls</button>
+        <pages>2</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>Normalformen</titel>
+        <button>beliebig_nf</button>
+        <pages>24</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>Architekturen</titel>
+        <button>beliebig_arc</button>
+        <pages>4</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>Indizes</titel>
+        <button>beliebig_ind</button>
+        <pages>18</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>Synchronisation</titel>
+        <button>beliebig_syn</button>
+        <pages>12</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>Verteilte DBS</titel>
+        <button>beliebig_ver</button>
+        <pages>8</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>In-Memory DBS</titel>
+        <button>beliebig_imd</button>
+        <pages>21</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>NoSQL-Datenbanken</titel>
+        <button>beliebig_nos</button>
+        <pages>16</pages>
+    </sub_page>
+
+    <sub_page>
+        <titel>NoSQL-Produkte</titel>
+        <button>beliebig_nop</button>
+        <pages>22</pages>
+    </sub_page>
+</root>

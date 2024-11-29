@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="titel" type="xs:string"/>
+<xs:element name="button" type="xs:string"/>
+<xs:element name="pages" type="xs:integer"/>
+
+<xs:element name="sub_page">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="titel"/>
+            <xs:element ref="button"/>
+            <xs:element ref="pages"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="root">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="sub_page" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>

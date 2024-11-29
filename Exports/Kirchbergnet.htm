@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <link rel="icon" type="image/vnd.microsoft.icon" href="http://training.kirchbergnet.de/t/pics/logo_quad.ico">
+      <title> Kirchbergnet </title>
+   <link href="data:text/css,%3Ais(%5Bid*%3D'google_ads_iframe'%5D%2C%5Bid*%3D'taboola-'%5D%2C.taboolaHeight%2C.taboola-placeholder%2C%23top-ad%2C%23credential_picker_container%2C%23credentials-picker-container%2C%23credential_picker_iframe%2C%5Bid*%3D'google-one-tap-iframe'%5D%2C%23google-one-tap-popup-container%2C.google-one-tap__module%2C.google-one-tap-modal-div%2C%23amp_floatingAdDiv%2C%23ez-content-blocker-container)%20%7Bdisplay%3Anone!important%3Bmin-height%3A0!important%3Bheight%3A0!important%3B%7D" rel="stylesheet" type="text/css"></head>
+   <body background="../Kirchbergnet-Dateien/dotbg.jpg">
+
+
+     <table border="0" align="center" cellspacing="5" cellpadding="5" width="750">
+        <tbody><tr>
+            <td align="left">  
+                <img height="60" src="../Kirchbergnet-Dateien/dbs.png" alt="Datenbanksysteme">            </td>
+            <td>  
+                <h2 align="center"> Datenbanksysteme: Frage 1 von 20 
+                </h2>  
+            </td>
+            <td align="right">  
+                <img height="60" src="../Kirchbergnet-Dateien/dbs.png" alt="Datenbanksysteme">            </td>
+        </tr>
+        
+            
+    </tbody></table>
+                  
+     <table border="0" align="center" cellspacing="5" cellpadding="5" width="800"><tbody><tr> <td>      <hr style="width:100%; color:#ff0000">      </td>      <td>      <hr style="width:100%; color:lightgray">      </td> </tr> <tr>     <td width="150"> Themengebiet: </td>     <td width="650">DB-Grundbegriffe &nbsp; &nbsp;&nbsp; &nbsp; Schwierigkeit: 1	</td> </tr>  <tr>     <td> Titel: </td>     <td>Konsistenz</td> </tr>  <tr> <td>      <hr style="width:100%; color:lightgray">      </td>      <td>      <hr style="width:100%; color:lightgray">      </td> </tr> <tr>    <td colspan="2">Was versteht man unter Datenkonsistenz?</td> </tr><tr> <td>      <hr style="width:100%; color:lightgray">      </td>      <td>      <hr style="width:100%; color:lightgray">      </td> </tr> </tbody></table>
+   <script>
+   
+    zeile1=0; zelle1=0; zeile2=0; zelle2=0;
+   
+	function pruefe_antwort() {
+		let radiobuts = document.querySelectorAll("input[name='moeglichkeiten']");
+		let korrekt = true;
+		for (var i = 0; i < radiobuts.length; i++) {
+		   if ((loesungsnr == i) && (radiobuts[i].checked == false))
+			   korrekt = false;
+		   if ((loesungsnr != i) && (radiobuts[i].checked == true))
+			   korrekt = false;
+		}
+
+     if (zeile1 == 0)
+	 {
+		 const tabelle = document.getElementById("fragetabelle");	  
+		 zeile1 = tabelle.insertRow(-1);
+		 zelle1 = zeile1.insertCell();
+		 zelle1.colSpan = 2;
+		 zeile2 = tabelle.insertRow(-1);
+		 zelle2 = zeile2.insertCell();
+		 zelle2.colSpan = 2;
+		 zelle1.align = "center";
+		 zelle1.height = "40px"; 
+	 }
+	 
+	 if (korrekt)
+	 {
+   	    zelle1.bgColor = "lime";
+        zelle1.innerHTML = "Die Lösung ist korrekt, siehe hierzu auch folgende Erläuerung. ";	
+	 }
+	 else
+	 {
+   	    zelle1.bgColor = "orangered";
+        zelle1.innerHTML = "Die Lösung ist falsch, lesen Sie hierzu folgende Erläuterung.";
+	 }
+	 
+     zelle2.innerHTML = loesungstext;	
+	 if (korrekt) return 1.0; else return 0.0;
+     }
+
+	</script>
+<table id="fragetabelle" border="0" align="center" cellspacing="5" cellpadding="5" width="800"><tbody><tr><td width="150"> Möglichkeit 1:     <input type="radio" name="moeglichkeiten" value="moeg1"></td><td>In Relationen gespeicherte Daten </td></tr><tr><td width="150"> Möglichkeit 2:     <input type="radio" name="moeglichkeiten" value="moeg2"></td><td>Korrektheit der Daten </td></tr><tr><td width="150"> Möglichkeit 3:     <input type="radio" name="moeglichkeiten" value="moeg3"></td><td>Protokollierung von Datenveränderungen </td></tr><tr><td width="150"> Möglichkeit 4:     <input type="radio" name="moeglichkeiten" value="moeg4"></td><td>Nicht-redundante Speicherung der Daten </td></tr><tr id="lasttableline"> <td>  <hr style="width:100%; color:lightgray"> </td>  <td> <hr style="width:100%; color:lightgray">  </td> </tr></tbody></table><script>var loesungsnr = 1;var loesungstext = "Als Konsistenz wird in Datenbanken die Korrektheit der dort gespeicherten Daten bezeichnet. Diese dürfen dabei redundant gespeichert werden.";</script> 
+     
+    
+
+     <table border="0" align="center" cellspacing="5" cellpadding="5" width="800">
+
+        <tbody><tr> 
+        <td align="left"> <form method="post"> 
+           <button id="pruefbut" onclick="pruefe_die_antwort()"> &nbsp; Antwort prüfen &nbsp; </button> &nbsp;&nbsp; &nbsp;
+           <input type="submit" name="next" value="  Nächste Frage  "> &nbsp; &nbsp;</form>
+        </td> <td> </td> </tr> <tr> <td> <p> </p> </td> <td> <p> </p> </td> </tr>     <tr> 
+        <td align="left"> 
+           <a href="http://training.kirchbergnet.de/t/training_themenwahl.php"> Zurück zur Themenauswahl </a>  &nbsp;&nbsp; 
+           <a href="http://training.kirchbergnet.de/t/training.php"> Zurück zur Vorlesungsauswahl </a> &nbsp;&nbsp;
+           <a href="http://training.kirchbergnet.de/t/main.php"> Zurück zum Aktionsmenü </a>  
+
+        </td>
+         <td align="right">  
+             <a href="http://www.kirchbergnet.de/impressum.php"> <font color="slategray">  <u> Impressum </u>  </font> </a>    
+             <a href="http://www.kirchbergnet.de/datenschutz.php"> <font color="slategray">  <u> Datenschutz  </u> </font> </a> 
+         </td> 
+     </tr> 
+     
+     
+     </tbody></table>
+   
+<script>   
+	function pruefe_die_antwort() {
+		let score = pruefe_antwort();
+      let but = document.getElementById("pruefbut");
+      but.disabled = true;
+      
+      
+      // Speichern des Ergebnisses
+       const data = new FormData();
+       data.append("fragenr", 111);
+       data.append("sid", "12345678");
+       data.append("score", score);
+       data.append("protokoll",  "Y");
+       
+       var http = new XMLHttpRequest();
+       http.open ("POST", "http://training.kirchbergnet.de/t/httprequest/savescore.php", true);
+       
+       http.onreadystatechange = function() {
+          if (this.readyState == 4) 
+             {
+                if ((this.status == 200) && (this.responseText == "ok"))
+                {
+                }
+                else
+                {
+                   alert ("Beim Speichern der Antwort ist ein Fehler aufgetreten: " + this.responseText);
+                }
+             }
+          }
+       http.send(data);
+       }
+
+
+</script>
+     
+   
+<nordpass-passkeys></nordpass-passkeys></body></html>
