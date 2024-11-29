@@ -2,7 +2,8 @@ from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
-from src.PdfGenerator import GeneratePdfFromHTML
+from src.HtmlTextReader import HtmlTextReader
+from src.PdfGenerator import PdfGenerator
 from src.subpagecontroller import SubPageController
 
 
@@ -68,9 +69,11 @@ def main():
             for html_str in html_pages:
                 datei.write(f"\n{html_str}\n")
 
+    txt_reader = HtmlTextReader()
+    html_pages: list[str] = txt_reader.get_html_list_from_txt("Exports/html.txt")
 
-    pdf_gen = GeneratePdfFromHTML()
-    pdf_gen.generate_pdf_from_html_list()
+    pdf_gen = PdfGenerator()
+    pdf_gen.generate_pdf_from_html_list_selenium(html_pages)
 
 if __name__ == '__main__':
     main()
