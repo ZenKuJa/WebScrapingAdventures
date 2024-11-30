@@ -1,3 +1,4 @@
+from src.WebPageTraverser import WebPageTraverser
 from src.subpage import SubPage
 from selenium import webdriver
 from selenium.webdriver import Keys
@@ -9,7 +10,12 @@ from src.subpagecontroller import SubPageController
 
 class SubPageParser:
 
-    def extract_html_from_subpages(self,driver: webdriver,  sub_pages: list[SubPage], next_page_str: str, solution_str: str) -> None:
+    page_traverser: WebPageTraverser
+
+    def __init__(self):
+        self.page_traverser = WebPageTraverser()
+
+    def extract_html_from_subpages(self,driver: webdriver,  sub_pages: list[SubPage], next_page_str: str, solution_str: str, home_url: str) -> None:
 
         html_pages = [str]
 
@@ -26,9 +32,10 @@ class SubPageParser:
                 html_pages.append(driver.page_source)
                 next_page_button.click()
 
-            driver.get("http://training.kirchbergnet.de/t/training.php")
-            db_systeme_fragen = driver.find_element(By.NAME, "befrage_2db")
-            db_systeme_fragen.click()
+            self.page_traverser.click_button_on_page(
+                url=next_page_str,
+                button_name="befrage_2db"
+            )
 
         with open("Exports/html.txt", "w") as datei:
             pass

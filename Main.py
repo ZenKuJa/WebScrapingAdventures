@@ -11,7 +11,9 @@ from src.subpagecontroller import SubPageController
 
 def main():
 
-    need_updated_pages: bool = True
+    #Task Configuration
+    need_updated_pages: bool = False
+    generate_pdf: bool = True
 
     if need_updated_pages:
 
@@ -37,15 +39,19 @@ def main():
         sub_pages = page_controller.get_sub_pages()
 
         sub_page_parser = SubPageParser()
-        sub_page_parser.extract_html_from_subpages(driver= driver, sub_pages= sub_pages, next_page_str= next_page_str, solution_str= solution_str)
+        sub_page_parser.extract_html_from_subpages(
+            driver= driver,
+            sub_pages= sub_pages,
+            next_page_str= next_page_str,
+            solution_str= solution_str,
+            home_url="http://training.kirchbergnet.de/t/training.php")
 
         driver.quit()
-
-    generate_pdf: bool = False
 
     if generate_pdf:
         txt_reader = HtmlTextReader()
         html_pages: list[str] = txt_reader.get_html_list_from_txt("Exports/html.txt")
+
 
         pdf_gen = PdfGenerator()
         pdf_gen.generate_pdf_from_html_list_selenium(html_pages)

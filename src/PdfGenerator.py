@@ -1,10 +1,13 @@
 import io
 import os
 
-import img2pdf
-from PIL import Image
+import warnings
 
-from PyPDF2 import PdfMerger, PdfWriter, PdfReader
+import img2pdf
+import pdfkit
+from PIL import Image
+from pypdf import PdfWriter, PdfReader, PdfMerger
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from weasyprint import HTML
@@ -27,8 +30,10 @@ class PdfGenerator:
 
         document.write_pdf("DB_Aufgaben.pdf")
 
-
     def generate_pdf_from_html_list_selenium(self, html_pages: list[str]) -> None:
+
+        warnings.warn("the function 'generate_pdf_from_html_list_selenium()' is deprecated, use 'generate_pdf_from_html_list_pypdf()' instead")
+
         chrome_options = Options()
         chrome_options.add_argument("--print-to-pdf")  # PDF-Druck aktivieren
         chrome_options.add_argument('--kiosk-printing')
@@ -80,3 +85,31 @@ class PdfGenerator:
         for i in range(len(html_pages)):
             os.remove(f"Data/temp_{i}.html")
             os.remove(f"Data/screenshot_{i}.png")
+
+    def generate_pdf_from_html_list_pypdf(self, html_pages: list[str]) -> None:
+
+        merger = PdfWriter()
+
+        config = pdfkit.configuration(wkhtmltopdf="C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe")
+
+        options = {
+            'no-images': ''
+        }
+
+        for i, page in enumerate(html_pages):
+            print(f"{i + 1}/{len(html_pages)}")
+
+            # Temporäre HTML-Datei erstellen
+            with open(f"Data/temp_{i}.html", "w") as f:
+                f.write(page)
+
+            pdfkit.from_file(f"Data/temp_{i}.html", f"Data/temp_{i}.pdf", configuration=config, options=options)
+
+            merger.append(f"Data/temp_{i}.pdf")
+
+        merger.write("Exports/DB_Aufagben_new.pdf")
+
+        for i in range(len(html_pages)):
+            os.remove(f"Data/temp_{i}.html")
+            os.remove(f"Data/temp_{i}.pdf")
+        ...
